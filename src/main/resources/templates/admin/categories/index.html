@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="en">
+
+<head th:replace="/fragments/head :: heads"></head>
+
+<body>
+
+    <nav th:replace="/fragments/nav :: nav-admin"></nav>
+
+    <div class="container">
+        <!-- Example row of columns -->
+        <div class="row">
+            <div class="col">
+                <h1 class="display-2">Admin Categories </h1>
+
+                <a href="/admin/categories/add" class="btn btn-primary mb-5">Add new</a>
+
+                <div th:if="${!categories.empty}"> 
+                    
+                   <table class="table sorting" id="pages">
+                       <tr class="home">
+                           <th>Name</th>
+                           <th>Edit</th>
+                           <th>Delete</th>
+                       </tr>
+                       <tr th:each="category: ${categories}" th:id="'id_'+  ${category.idcategories}">
+                           <td th:text="${category.name}"></td>
+                            <td><a th:href="@{'/admin/categories/edit/'+${category.idcategories}}">Edit</a></td>
+                            <td><a th:href="@{'/admin/categories/edit/'+${category.idcategories}}">Delete</a></td>
+                                      
+                        </tr>
+                   </table>
+                
+                </div>
+                <div th:unless="${!categories.empty}">
+                    <h4 class="display-4">There are NO categories at the moment </h4>
+                </div>
+            </div>
+
+           
+        </div>
+
+    </div>
+
+    <hr>
+
+    </div> <!-- /container -->
+
+
+    <div th:replace="/fragments/footer"></div>
+
+<script>
+
+let token = $("meta[name='_csrf']").attr("content");
+    let header = $("meta[name='_csrf_header']").attr("content");
+    $(document).ajaxSend(function (e, xhr, options) {
+        xhr.setRequestHeader(header, token);
+    });
+
+
+$("table#pages tbody").sortable({
+items:"tr:not(.home)",
+placeholder:"ui-state-highlight",
+update:function(){
+let ids = $("table#pages tbody").sortable("serialize");
+let url = "/admin/pages/reorder";
+
+$.post(url,ids,function(data){
+
+console.log(data);
+
+});
+
+}
+
+});
+
+</script>
+
+</body>
+
+</html>
