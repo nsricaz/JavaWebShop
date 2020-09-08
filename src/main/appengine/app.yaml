@@ -1,8 +1,0 @@
-runtime: java11
-instance_class: F1
-
-env_variables:
-  CLOUD_SQL_USERNAME: root
-  CLOUD_SQL_PASSWORD: fdd23xgh
-  CLOUD_SQL_DATABASE_NAME: webshop
-  CLOUD_SQL_CONNECTION_NAME: lofty-hybrid-287509:us-central1:webshop
