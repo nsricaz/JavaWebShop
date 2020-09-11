@@ -1,9 +1,0 @@
-# [START gae_python37_cloudsql_config]
-runtime: javaweb
-
-env_variables:
-  CLOUD_SQL_USERNAME: root
-  CLOUD_SQL_PASSWORD: fdd23xgh
-  CLOUD_SQL_DATABASE_NAME: webshop
-  CLOUD_SQL_CONNECTION_NAME: javaweb-22061992:europe-west1:webshop
-# [END gae_python37_cloudsql_config]
